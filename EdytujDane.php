@@ -16,12 +16,14 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <Style>
         body {
-  background-color: lightgray;
+  background-color: ;
 }
-.moje{
-  
-  background-color:darkgray;
-
+.kolor{
+  background-color: rgb(3,3,64);
+}
+.kolory{
+  background-color:rgb(3,3,64);
+ 
 }
     </Style>
 </head>
@@ -29,7 +31,7 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
 
   <div hight="100%">
 <div >
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+      <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
           <a class="navbar-brand text-white" href="#">Serwis Komputerowy</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

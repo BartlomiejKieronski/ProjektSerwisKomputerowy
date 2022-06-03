@@ -10,12 +10,14 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <Style>
         body {
-  background-color: lightgray;
+  background-color: ;
 }
-#borders{
- border-width: 1px
+.kolor{
+  background-color: rgb(3,3,64);
+}
+.kolory{
+  background-color:rgb(3,3,64);
  
-
 }
     </Style>
 </head>
@@ -26,7 +28,7 @@ session_start();
 
 
 <div >
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+      <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
           <a class="navbar-brand text-white" href="#">Serwis Komputerowy</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +78,7 @@ session_start();
                 <input type='Text' class='form-control' id='Email' name='Email' value='$row[AdresEmail]' placeholder='E-mail' required><br>
                 <input type='number' class='form-control' id='number' name='number' value='$row[NumerTelefonu]' placeholder='Numer Telefonu' required><br>
                 
-                <button type='submit' class='form-control' id='submit' >Zarejestruj</button>
+                <button type='submit' class='form-control' id='submit' >Edytuj dane</button>
             </form>
             </div></div>
           </div>

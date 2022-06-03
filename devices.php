@@ -14,16 +14,22 @@ else{
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <Style>
         body {
-  background-color: lightgray;
+  background-color: ;
 }
-
+.kolor{
+  background-color: rgb(3,3,64);
+}
+.kolory{
+  background-color:rgb(3,3,64);
+ 
+}
     </Style>
 </head>
 <body>
  
 <!-- navbar -->
-    <div >
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+    <div class="sticky-top">
+      <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
           <a class="navbar-brand text-white" href="#">Serwis Komputerowy</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,32 +69,29 @@ else{
     else{
       $data = "SELECT * FROM urzadzenie";
       $result = $conn->query($data);
-    
+      
       if($result!=null){
         while($row = $result->fetch_assoc() ){
+          $data1 = "SELECT Imie,Nazwisko FROM owner WHERE Id='$row[PrzypisanyPracownik]'";
+          $wynik = $conn->query($data1);
           echo "<div class='row border-bottom border-dark mt-3' id='devices'>
           <a type='submit' href='deviceinfo.php?id=$row[idUrzadzenia]'>
-          <div class='col'> $row[typUrzadzenia] $row[idUrzadzenia] $row[Stan]<img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div>
+          <div class='col'> $row[idUrzadzenia] $row[typUrzadzenia] $row[Stan] "; while($row5=$wynik->fetch_assoc()){echo "$row5[Imie] $row5[Nazwisko]";} echo"<img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div>
           </a></div> ";
       }
     }
   }
     ?>
-
-
-</script>
             </div>
         </div>
         <!-- paginator -->
     <?php
-
 $number = "SELECT max(idUrzadzenia) as max FROM urzadzenie;";
 $result1 = $conn->query($number);
 if($result1!=null){
   while($row1 = $result1->fetch_assoc()){
     
     $x = "$row1[max]";  
-
   }
 }
 $y = (int)($x/10);
@@ -106,20 +109,14 @@ $i=1;
     $a = $a-1;
     $i = $i+1;
   } 
-
 echo "<li class='page-item'><a class='page-link' href='#'>Next</a></li>
 </ul>
 </nav>
 </div>;"
-
 ?>
     </div>
-
-    
-    
-  
   </div>
-  <div class="fixed-bottom sticky-bottom" >
+  <div class="sticky-bottom" >
         <div class="moje bg-dark text-white" style="" height="100px">
       <footer>
       test
