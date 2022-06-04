@@ -1,5 +1,10 @@
 <?php
 session_start();
+if(isset($_SESSION['typUzytkownika'])){
+  header("Location:MojeUrzadzenia.php");
+}
+else{
+}
 ?>
 <!DOCTYPE html>
 <html>

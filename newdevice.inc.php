@@ -17,7 +17,7 @@ if($conn->connect_error !=0){
 else{
     $sql = "INSERT INTO urzadzenie(imieWlasciciela,nazwiskoWlasciciela,adresEmailWlasiciela,numerTelefonuWlasciciela,markaUrzadzenia,typUrzadzenia,modelUrzadzenia,Problem,Stan,DataObecna) VALUES ('$ImieWlasciciela','$NazwiskoWlasciciela','$AdresEmail','$NumerTelefonu','$MarkaUrzadzenia','$TypUrzadzenia','$ModelUrzadzenia','$OpisanyProblem','$stan','$dates')";
     if($conn->query($sql)){
-    header("Location:devices.php");
+    header("Location:devices.php?id=1");
 }
 
 }

@@ -5,6 +5,14 @@ if(!isset($_SESSION['typUzytkownika'])){
 }
 else{
 }
+if(isset($_GET['id'])){
+  $strona=$_GET['id'];
+}
+else{
+  $strona = 1;
+}
+$następna = $strona+1;
+$poprzednia = $strona-1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,6 +61,41 @@ else{
                 <a class="nav-link active text-white" href="#">Moje naprawy</a>
               </li>
             </ul>
+            <div class='flex-box'>
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item">
+            <?php
+            if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != null){
+                echo "<li class='nav-item dropdown dropstart'>
+          <a class='nav-link dropdown-toggle text-white dropdown-menu-end'  href='' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+            <img width='20px' height='20px' src='account.png'>
+          </a>
+          <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+            <li><a class='dropdown-item' href='#'>Mój Profil</a></li>
+            <li><a class='dropdown-item' href='#'>Moje urządzenia</a></li>
+            <li><form action='wyloguj.php'>
+                
+            <a class='dropdown-item text-dark' type='submit' href='wyloguj.php' method='post' >Wyloguj</a>
+            </form></li>
+
+          </ul>
+        </li>
+                
+                </dropdown>";
+                
+              }
+           
+            } else{
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' href='login.php'>Zaloguj</a>
+            </li>";
+          }
+                
+            ?>
+            </li>
+            </ul>
+        </div>
           </div>
         </div>
       </nav>
@@ -61,23 +104,33 @@ else{
     <div class="container">
     <div style="padding: 100px">
     <div class="container padding-left" >
+    <div class='row border-bottom border-dark mt-3' id='devices'>
+    <h5>Urządzenia do naprawy :</h5>
+                    <div class='col'> <div class='row'> <div class='col'>ID:</div> <div class='col'>Typ urządzenia:</div> <div class='col'>Stan:</div> <div class='col'>Imie i nazwisko przypisanego pracownika:</div> <div class='col'></div></div></div>
+                    </div>
     <?php
+    
+    $h=10;
+    $offset = ($strona-1) *$h;
+    
     $conn = @new mysqli('localhost','root','','serwiskomputerowy');
     if($conn->connect_error !=0){
       echo "Wystąpił błąd połączenia";
      }
     else{
-      $data = "SELECT * FROM urzadzenie";
+      
+      $data = "SELECT * FROM urzadzenie LIMIT $offset, $h";
       $result = $conn->query($data);
       
       if($result!=null){
-        while($row = $result->fetch_assoc() ){
+        while($row = $result->fetch_assoc()){
           $data1 = "SELECT Imie,Nazwisko FROM owner WHERE Id='$row[PrzypisanyPracownik]'";
           $wynik = $conn->query($data1);
           echo "<div class='row border-bottom border-dark mt-3' id='devices'>
           <a type='submit' href='deviceinfo.php?id=$row[idUrzadzenia]'>
-          <div class='col'> $row[idUrzadzenia] $row[typUrzadzenia] $row[Stan] "; while($row5=$wynik->fetch_assoc()){echo "$row5[Imie] $row5[Nazwisko]";} echo"<img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div>
+          <div class='col'> <div class='row'><div class='col'> $row[idUrzadzenia]</div> <div class='col'>$row[typUrzadzenia]</div> <div class='col'> $row[Stan]</div> <div class='col'> "; while($row5=$wynik->fetch_assoc()){echo "$row5[Imie] $row5[Nazwisko]";} echo" </div><div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
           </a></div> ";
+          
       }
     }
   }
@@ -86,6 +139,7 @@ else{
         </div>
         <!-- paginator -->
     <?php
+    
 $number = "SELECT max(idUrzadzenia) as max FROM urzadzenie;";
 $result1 = $conn->query($number);
 if($result1!=null){
@@ -94,25 +148,55 @@ if($result1!=null){
     $x = "$row1[max]";  
   }
 }
+
 $y = (int)($x/10);
+
 $z = $x%10;
+
 if($z>0){
   $a = $y+1;
+  
 }
+if($strona>2){
+$min=$strona-2;
+}else{
+  $min=0;
+}
+$max=$strona+2;
+
 $i=1;
   echo "<div class=' justify-content-center '>
-    <ul class='pagination justify-content-center '>
-    <li class='page-item'><a class='page-link' href='#'>Previous</a></li>";
-  while($a>0){
+    <ul class='pagination justify-content-center '>";
 
-    echo "<li class='page-item'><a class='page-link' href='#'>$i</a></li>";
-    $a = $a-1;
-    $i = $i+1;
-  } 
-echo "<li class='page-item'><a class='page-link' href='#'>Next</a></li>
-</ul>
+    if($poprzednia>0){
+    echo "<li class='page-item'><a class='page-link' href='devices.php?id=$poprzednia'>Previous</a></li>";
+    }
+    else{
+      echo "<li class='page-item'><a  link='disabled' class='page-link' href='#'>Previous</a></li>";
+    }
+    if($min>0){
+    echo "<li class='page-item'><a  link='disabled' class='page-link' href='devices.php?id=$min'>$min</a></li>";
+    }else{}
+    if($poprzednia>0){
+    echo "<li class='page-item'><a  link='disabled' class='page-link' href='devices.php?id=$poprzednia'>$poprzednia</a></li>";
+    }else{}
+    echo "<li class='page-item page-item active'> <a link='disabled' class='page-link' href='devices.php?id=$strona'>$strona</a></li>";
+    if($następna<=$a){
+    echo "<li class='page-item'><a  link='disabled' class='page-link' href='devices.php?id=$następna'>$następna</a></li>";
+    }else{}
+    if($max<=$a){
+    echo "<li class='page-item'><a  link='disabled' class='page-link' href='devices.php?id=$max'>$max</a></li>";
+    }else{}
+    if((($strona*10)+1)>=$x){
+echo "<li class='page-item'><a link='disabled' class='page-link' href='#'>Next</a></li>";
+  
+}else{
+  echo "<li class='page-item'><a  class='page-link' href='devices.php?id=$następna'>Next</a></li>";
+
+}
+echo"</ul>
 </nav>
-</div>;"
+</div>";
 ?>
     </div>
   </div>

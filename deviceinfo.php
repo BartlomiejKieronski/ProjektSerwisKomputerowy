@@ -174,6 +174,7 @@ else{
             <option value='Do odbioru'>Do odbioru</option>
             <option value='Do utylizacji'>Do utylizacji</option>
             <option value='Niemożliwe do naprawy'>Niemożliwe do naprawy</option>
+            <option value='Odebrane'>Odebrane</option>
             <option value='Zrealizowane'>Zrealizowane</option>
           </select>
           <div class='d-flex justify-content-end mb-1 mt-1'>
