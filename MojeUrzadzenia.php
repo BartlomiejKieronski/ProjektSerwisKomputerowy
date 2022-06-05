@@ -71,7 +71,7 @@ $poprzednia = $strona-1;
     <div class="container padding-left" >
     <div class='row border-bottom border-dark mt-3' id='devices'>
     <h5>Urządzenia do naprawy przypisane do ciebie:</h5>
-                    <div class='col'> <div class='row'> <div class='col'>ID:</div> <div class='col'>Typ urządzenia:</div> <div class='col'>Stan:</div> <div class='col'>Imie przypisanego pracownika:</div> <div class='col'>Nazwisko przypisanego pracownika:</div><div class='col'></div></div></div>
+    <div class='col'> <div class='row'> <div class='col'>ID:</div> <div class='col'>Typ urządzenia:</div> <div class='col'>Stan:</div> <div class='col'>Imie przypisanego pracownika:</div> <div class='col'>Nazwisko przypisanego pracownika:</div><div class='col'></div></div></div>
                     </div>
     <?php
     $test=$_SESSION['typUzytkownika'];
@@ -123,7 +123,7 @@ $poprzednia = $strona-1;
                     $wynik = $conn->query($data1);
                     echo "<div class='row border-bottom border-dark mt-3' id='devices'>
                     <a type='submit' href='deviceinfo.php?id=$row3[idUrzadzenia]'>
-                    <div class='col'> <div class='row'> <div class='col'>$row3[idUrzadzenia]</div> <div class='col'>$row3[typUrzadzenia]</div> <div class='col'>$row3[Stan]</div> "; while($row5=$wynik->fetch_assoc()){echo "<div class='col'>$row5[Imie]</div> <div class='col'>$row5[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
+                    <div class='col'> <div class='row'> <div class='row'>$row3[idUrzadzenia]</div> <div class='col'>$row3[typUrzadzenia]</div> <div class='col'>$row3[Stan]</div> "; while($row5=$wynik->fetch_assoc()){echo "<div class='col'>$row5[Imie]</div> <div class='col'>$row5[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
                     </a></div> ";
                    }
                }
@@ -134,7 +134,6 @@ $poprzednia = $strona-1;
             </div>
         </div>
         <!-- paginator -->
- 
     </div>
   </div>
   
