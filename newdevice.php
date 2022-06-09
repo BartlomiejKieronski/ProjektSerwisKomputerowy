@@ -30,27 +30,43 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
 <body>
 
   <div hight="100%">
-<div >
+  <div class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
-          <a class="navbar-brand text-white" href="#">Serwis Komputerowy</a>
+          <a class="navbar-brand text-white" href="#"><img src='Projekt_ks.png' width='30px' height='30px'> Serwis Komputerowy</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="#">Moje urządzenia</a>
+                <a class="nav-link active text-white" aria-current="page" href="devices.php">Urządzenia</a>
               </li>
+              
               <li class="nav-item">
+                <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>
+              </li>
+              <?php
+              if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != "Uzytkownik"){
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' href='newdevice.php'>Dodaj urządzenie</a>
+            </li>";
+              }}
+              if(isset($_SESSION['typUzytkownika'] )) {
+                if($_SESSION['typUzytkownika'] == "Administrator"){
+                echo "<li class='nav-item'>
+                <a class='nav-link active text-white' href='dodajPracownika.php'>Dodaj Pracownika</a>
+              </li>";
+                }}
+            ?>
+            <li class="nav-item">
                 <a class="nav-link text-white" href="#">O Nas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="#">Kontakt</a>
               </li>
-              
             </ul>
-            
           </div>
           <div class='flex-box'>
           <ul class="navbar-nav justify-content-end">
@@ -63,30 +79,22 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
             <img width='20px' height='20px' src='account.png'>
           </a>
           <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-            <li><a class='dropdown-item' href='#'>Mój Profil</a></li>
-            <li><a class='dropdown-item' href='#'>Moje urządzenia</a></li>
+            <li><a class='dropdown-item' href='Userinfo.php'>Mój Profil</a></li>
+            <li><a class='dropdown-item' href='MojeUrzadzenia.php'>Moje urządzenia</a></li>
             <li><form action='wyloguj.php'>
-                
             <a class='dropdown-item text-dark' type='submit' href='wyloguj.php' method='post' >Wyloguj</a>
             </form></li>
-
           </ul>
-        </li>
-                
+        </li>   
                 </dropdown>";
-                
               }
-           
             } else{
               echo "<li class='nav-item'>
               <a class='nav-link active text-white' href='login.php'>Zaloguj</a>
             </li>";
-          }
-                
+          }   
             ?>
-            </li>
-          </ul>
-</div>
+        </div>
       </nav>
     </div>
     <div>
@@ -127,15 +135,7 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
         </div>
         </div>
         
-        <div class="fixed-bottom " >
-        <div class = "sticky bottom">
-        <div class="moje bg-dark text-white" style="" height="100px">
-      <footer>
-      test
-</footer>
-</div>
-</div>
-</div>
+        
         </div>
         
 

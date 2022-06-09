@@ -46,22 +46,60 @@ $poprzednia = $strona-1;
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="#">Strona główna</a>
+                <a class="nav-link active text-white" aria-current="page" href="devices.php">Urządzenia</a>
               </li>
+              
               <li class="nav-item">
+                <a class="nav-link active text-white" href="#">Moje naprawy</a>
+              </li>
+              <?php
+              if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != "Uzytkownik"){
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' href='newdevice.php'>Dodaj urządzenie</a>
+            </li>";
+              }}
+            ?>
+            <li class="nav-item">
                 <a class="nav-link text-white" href="#">O Nas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="#">Kontakt</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active text-white" href="#">Mój profil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active text-white" href="#">Moje naprawy</a>
-              </li>
-            </ul>
+                </ul>
           </div>
+          <div class='flex-box'>
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item">
+              <?php
+            if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != null){
+                echo "<li class='nav-item dropdown dropstart'>
+          <a class='nav-link dropdown-toggle text-white dropdown-menu-end'  href='' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+            <img width='20px' height='20px' src='account.png'>
+          </a>
+          <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+            <li><a class='dropdown-item' href='Userinfo.php'>Mój Profil</a></li>
+            <li><a class='dropdown-item' href='MojeUrzadzenia.php'>Moje urządzenia</a></li>
+            <li><form action='wyloguj.php'>
+                
+            <a class='dropdown-item text-dark' type='submit' href='wyloguj.php' method='post' >Wyloguj</a>
+            </form></li>
+
+          </ul>
+        </li>
+                
+                </dropdown>";
+                
+              }
+           
+            } else{
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' href='login.php'>Zaloguj</a>
+            </li>";
+          }
+                
+            ?>
         </div>
       </nav>
     </div>
@@ -99,11 +137,12 @@ $poprzednia = $strona-1;
                          if($result2->num_rows>0){
                              while ($row2 = $result2->fetch_assoc()){
                                  if($row['Imie']==$row2['imieWlasciciela'] && $row['Nazwisko']==$row2['nazwiskoWlasciciela'] && $row['NumerTelefonu']==$row2['numerTelefonuWlasciciela'] && $row['AdresEmail']==$row2['adresEmailWlasiciela']){
-                                     #echo "$row[Imie]";
+                                  $data2 = "SELECT Imie,Nazwisko FROM owner WHERE Id='$row2[PrzypisanyPracownik]'";
+                                  $wynik1 = $conn->query($data2);
 
                                      echo "<div class='row border-bottom border-dark mt-3' id='devices'>
                                      <a type='submit' href='deviceinfo.php?id=$row2[idUrzadzenia]'>
-                                     <div class='col'> $row2[idUrzadzenia] $row2[typUrzadzenia] $row2[Stan] <img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div>
+                                     <div class='col'> <div class='row'> <div class='col'>$row2[idUrzadzenia]</div> <div class='col'>$row2[typUrzadzenia]</div> <div class='col'>$row2[Stan]</div> "; while($row6=$wynik1->fetch_assoc()){echo "<div class='col'>$row6[Imie]</div> <div class='col'> $row6[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
                                      </a></div> ";
 
                                  }
@@ -123,7 +162,7 @@ $poprzednia = $strona-1;
                     $wynik = $conn->query($data1);
                     echo "<div class='row border-bottom border-dark mt-3' id='devices'>
                     <a type='submit' href='deviceinfo.php?id=$row3[idUrzadzenia]'>
-                    <div class='col'> <div class='row'> <div class='row'>$row3[idUrzadzenia]</div> <div class='col'>$row3[typUrzadzenia]</div> <div class='col'>$row3[Stan]</div> "; while($row5=$wynik->fetch_assoc()){echo "<div class='col'>$row5[Imie]</div> <div class='col'>$row5[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
+                    <div class='col'> <div class='row'> <div class='col'>$row3[idUrzadzenia]</div> <div class='col'>$row3[typUrzadzenia]</div> <div class='col'>$row3[Stan]</div> "; while($row5=$wynik->fetch_assoc()){echo "<div class='col'>$row5[Imie]</div> <div class='col'> $row5[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
                     </a></div> ";
                    }
                }
