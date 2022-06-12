@@ -45,9 +45,6 @@ else{
             </li>";
               }}
               ?>
-                
-              
-              
               <li class="nav-item">
                 <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>
               </li>
@@ -62,6 +59,9 @@ else{
                 if($_SESSION['typUzytkownika'] == "Administrator"){
                 echo "<li class='nav-item'>
                 <a class='nav-link active text-white' href='dodajPracownika.php'>Dodaj Pracownika</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link active text-white' href='Pracownicy.php'>Statystyki pracowników</a>
               </li>";
                 }}
             ?>
