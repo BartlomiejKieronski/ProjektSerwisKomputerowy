@@ -27,8 +27,6 @@ else{
     </Style>
 </head>
 <body>
- 
-
 <div class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
@@ -38,9 +36,16 @@ else{
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="devices.php">Urządzenia</a>
-              </li>
+              <?php
+            if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != "Uzytkownik"){
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' aria-current='page' href='devices.php'>Urządzenia</a>
+            </li>";
+              }}
+              ?>
+                
+              
               
               <li class="nav-item">
                 <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>
@@ -113,6 +118,7 @@ else{
             echo "wystąpił błąd połączenia".$conn->connect_error;
         }
         else{
+          
           $sql = "SELECT * FROM urzadzenie WHERE idUrzadzenia='$idurzadzenia'";
           $result=$conn->query($sql);
 
@@ -253,19 +259,29 @@ else{
              </form>";
         ?> 
         <?php
+        
+        echo "<div class='col justify-content-start'>";
         if(isset($_SESSION['typUzytkownika'] )) {
           if($_SESSION['typUzytkownika'] == "Administrator"){
-        echo "<div class='d-flex justify-content-start mt-2'>
         
-        <a href='EdytujDane.php?id=$idurzadzenia'>
-        
+        echo"<a href='EdytujDane.php?id=$idurzadzenia'>
         <button class='btn 'style='background-color:lightgray;' type='button'>Edytuj dane</button>
-        </div>
+        
         </a>" ;
           }}
         endif;
       
         }
+        
+        
+        
+        echo"<a href='Message.php?id=$idurzadzenia'>
+        <button class='btn 'style='background-color:lightgray;' type='button'>Wyślij wiadomość</button>
+        
+        </a>
+        
+        " ;
+        
         ?>
         
         

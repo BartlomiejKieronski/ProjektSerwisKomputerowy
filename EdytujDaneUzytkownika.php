@@ -22,11 +22,6 @@ session_start();
     </Style>
 </head>
 <body>
-<script>
-
- </script>
-
-
 <div class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
@@ -36,9 +31,16 @@ session_start();
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="devices.php">Urządzenia</a>
-              </li>
+              <?php
+            if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != "Uzytkownik"){
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' aria-current='page' href='devices.php'>Urządzenia</a>
+            </li>";
+              }}
+              ?>
+                
+              
               
               <li class="nav-item">
                 <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>

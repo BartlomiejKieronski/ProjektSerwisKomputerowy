@@ -37,9 +37,7 @@ else{
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="#">Strona główna</a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link text-white" href="#">O Nas</a>
               </li>
@@ -71,7 +69,7 @@ else{
         </form>";
       }
     }else{
-      echo 'nie udało się';
+      
       }
 ?>
         <div class='d-flex container justify-content-center'>
@@ -88,7 +86,7 @@ else{
               <button class="btn btn-light" style='width:100px;height:44px' type="submit">Zaloguj</button>
               
         </div>
-        
+       
         
     </div>
       </div></div>

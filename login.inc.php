@@ -18,7 +18,7 @@ else{
                 $_SESSION["NumerTelefonu"] = $numerTelefonu ;
                 $_SESSION['typUzytkownika'] = "$row[typuzytkownika]";
                 $_SESSION['iduzytkownika'] = "$row[Id]";
-                header("Location:newdevice.php");
+                header("Location:MojeUrzadzenia.php");
             }
         }
     }   

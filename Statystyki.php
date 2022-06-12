@@ -1,32 +1,77 @@
 <?php
 session_start();
 if(!isset($_SESSION['typUzytkownika'])){
-    header("Location:login.php");
-  }
-  else if (isset($_SESSION['typUzytkownika'])){
-    if ($_SESSION['typUzytkownika']!='Administrator'){
-        header("Location:MojeUrzadzenia.php");
-  }
-  }
-?>
+  header("Location:login.php");
+}
+elseif($_SESSION['typUzytkownika']!='Administrator'){
+  header("Location:MojeUrzadzenia.php");
+}
+else{
+}
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <Style>
-        body {
-  background-color: ;
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBasic);
+  function drawBasic() {
+
+var data = new google.visualization.DataTable();
+data.addColumn('date', 'X');
+data.addColumn('number', 'Ilość napraw');
+
+data.addRows([
+  
+<?php
+$id = $_GET['id'];
+
+$conn= @new mysqli('localhost','root','','serwiskomputerowy');
+$info = "SELECT * FROM stats WHERE idUzytkownika = $id ORDER BY daty ASC ";
+$result = $conn->query($info);
+if($result!=null){
+  while($row = $result->fetch_assoc()){
+    $orgDate = $row['daty'];  
+    $date = str_replace('-"', ',', $orgDate);  
+    $newDate = date("Y,m", strtotime($date));
+    $i=10;
+    $i+10; 
+    echo"[new Date($newDate),$row[numery]],";
+  }
 }
-.kolor{
+?>
+]);
+
+var options = {
+  hAxis: {
+    title: 'daty'
+  },
+  vAxis: {
+    title: 'Ilość urządzeń przypisanych do pracownika w tym miesiącu'
+  }
+};
+
+var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+chart.draw(data, options);
+  }
+  </script>
+   <Style>
+        body {
+ 
+}.kolor{
   background-color: rgb(3,3,64);
 }
 .kolory{
   background-color:rgb(3,3,64);
  
 }
+
     </Style>
 </head>
 <body>
@@ -104,27 +149,10 @@ if(!isset($_SESSION['typUzytkownika'])){
         </div>
       </nav>
     </div>
-    <div>
-      
-        <div >
-        <div class="mx-auto" style="width: 1000px;">
-            <div class="mt-5">
-            <form action ="dodajPracownika.inc.php"  method="post" enctype="multipart/form-data">
-                
-                <input type="Text" class="form-control" id="Imie" name="Imie" placeholder="Imie pracownika"><br>
-                <input type="Text" class="form-control" id="Nazwisko" name="Nazwisko" placeholder="Nazwisko pracownika"><br>
-                <input type="Text" class="form-control" id="Email" name="Email" placeholder="E-mail pracownika"><br>
-                <input type="number" class="form-control" id="number" name="number" placeholder="Numer telefonu pracownika"><br>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Hasło dla pracownika"><br>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Potwierdź hasło"><br>
-                <button type="submit" class="form-control" id="submit" >Zarejestruj</button>
-            </form>
-            
 
-            </div>
-          </div>
+  <div id="chart_div">
+  </div>
 
-        </div>
-      
 </body>
+
 </html>

@@ -28,9 +28,7 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
     </Style>
 </head>
 <body>
-
-  <div hight="100%">
-  <div class="sticky-top">
+<div class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
           <a class="navbar-brand text-white" href="#"><img src='Projekt_ks.png' width='30px' height='30px'> Serwis Komputerowy</a>
@@ -39,9 +37,16 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="devices.php">Urządzenia</a>
-              </li>
+              <?php
+            if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != "Uzytkownik"){
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' aria-current='page' href='devices.php'>Urządzenia</a>
+            </li>";
+              }}
+              ?>
+                
+              
               
               <li class="nav-item">
                 <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>

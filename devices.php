@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['typUzytkownika'])){
   header("Location:login.php");
 }
+else if (isset($_SESSION['typUzytkownika'])){
+  if ($_SESSION['typUzytkownika']=='Uzytkownik'){
+      header("Location:MojeUrzadzenia.php");
+}}
 else{
 }
 if(isset($_GET['id'])){
@@ -11,6 +15,7 @@ if(isset($_GET['id'])){
 else{
   $strona = 1;
 }
+
 $następna = $strona+1;
 $poprzednia = $strona-1;
 ?>
@@ -45,9 +50,16 @@ $poprzednia = $strona-1;
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="devices.php">Urządzenia</a>
-              </li>
+              <?php
+            if(isset($_SESSION['typUzytkownika'] )) {
+              if($_SESSION['typUzytkownika'] != "Uzytkownik"){
+              echo "<li class='nav-item'>
+              <a class='nav-link active text-white' aria-current='page' href='devices.php'>Urządzenia</a>
+            </li>";
+              }}
+              ?>
+                
+              
               
               <li class="nav-item">
                 <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>

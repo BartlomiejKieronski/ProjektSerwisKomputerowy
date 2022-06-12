@@ -1,32 +1,30 @@
 <?php
 session_start();
 if(!isset($_SESSION['typUzytkownika'])){
-    header("Location:login.php");
-  }
-  else if (isset($_SESSION['typUzytkownika'])){
-    if ($_SESSION['typUzytkownika']!='Administrator'){
-        header("Location:MojeUrzadzenia.php");
-  }
-  }
+  header("Location:login.php");
+}
+else{
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <Style>
+    
+    
+   <Style>
         body {
-  background-color: ;
-}
-.kolor{
+ 
+}.kolor{
   background-color: rgb(3,3,64);
 }
 .kolory{
   background-color:rgb(3,3,64);
  
 }
+
     </Style>
 </head>
 <body>
@@ -104,27 +102,31 @@ if(!isset($_SESSION['typUzytkownika'])){
         </div>
       </nav>
     </div>
-    <div>
-      
-        <div >
-        <div class="mx-auto" style="width: 1000px;">
-            <div class="mt-5">
-            <form action ="dodajPracownika.inc.php"  method="post" enctype="multipart/form-data">
-                
-                <input type="Text" class="form-control" id="Imie" name="Imie" placeholder="Imie pracownika"><br>
-                <input type="Text" class="form-control" id="Nazwisko" name="Nazwisko" placeholder="Nazwisko pracownika"><br>
-                <input type="Text" class="form-control" id="Email" name="Email" placeholder="E-mail pracownika"><br>
-                <input type="number" class="form-control" id="number" name="number" placeholder="Numer telefonu pracownika"><br>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Hasło dla pracownika"><br>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Potwierdź hasło"><br>
-                <button type="submit" class="form-control" id="submit" >Zarejestruj</button>
-            </form>
-            
+<div class='container ' style='padding-top:100px'> 
+<div class='col'> 
+    <h5>
+  <?php
 
-            </div>
-          </div>
-
+          $conn = @new mysqli('localhost','root','','serwiskomputerowy');
+          if($conn->connect_error !=0){
+            echo 'błąd połączenia';
+          }
+          else{
+              $sql = "SELECT * FROM owner WHERE typuzytkownika='Pracownik'";
+              $result=$conn->query($sql);
+              if($result!=null){
+                  while($row=$result->fetch_assoc()){
+                      echo "<div class='row border-bottom border-dark mt-3' id='devices'>
+                    <a type='submit' href='Statystyki.php?id=$row[Id]'>
+                    <div class='row'> <div class='col'>$row[Imie] $row[Nazwisko]</div>  </div>
+                    </a></div> <br>";
+                  }
+              }
+            }
+  ?>
+  </h5>
+</div>
         </div>
-      
 </body>
+
 </html>
