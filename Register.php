@@ -41,7 +41,7 @@ var sprawdz = function() {
 <div >
       <nav class="navbar navbar-expand-lg navbar-light kolor text-white">
         <div class="container-fluid">
-          <a class="navbar-brand text-white" href="#">Serwis Komputerowy</a>
+          <a class="navbar-brand text-white" href="#"><img src='Projekt_ks.png' width='30px' height='30px'> Serwis Komputerowy</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -49,10 +49,10 @@ var sprawdz = function() {
             <ul class="navbar-nav">
               
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">O Nas</a>
+                <a class="nav-link text-white" href="ONas.php">O Nas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Kontakt</a>
+                <a class="nav-link text-white" href="Kontakt.php">Kontakt</a>
               </li>
               
               

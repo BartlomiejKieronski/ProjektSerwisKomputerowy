@@ -66,10 +66,10 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
                 }}
             ?>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">O Nas</a>
+                <a class="nav-link text-white" href="ONas.php">O Nas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Kontakt</a>
+                <a class="nav-link text-white" href="Kontakt.php">Kontakt</a>
               </li>
                 </ul>
           </div>

@@ -77,10 +77,10 @@ $poprzednia = $strona-1;
                 }}
             ?>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">O Nas</a>
+                <a class="nav-link text-white" href="ONas.php">O Nas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Kontakt</a>
+                <a class="nav-link text-white" href="Kontakt.php">Kontakt</a>
               </li>
                 </ul>
           </div>
@@ -152,8 +152,35 @@ $poprzednia = $strona-1;
 
                                      echo "<div class='row border-bottom border-dark mt-3' id='devices'>
                                      <a type='submit' href='deviceinfo.php?id=$row2[idUrzadzenia]'>
-                                     <div class='col'> <div class='row'> <div class='col'>$row2[idUrzadzenia]</div> <div class='col'>$row2[typUrzadzenia]</div> <div class='col'>$row2[Stan]</div> "; while($row6=$wynik1->fetch_assoc()){echo "<div class='col'>$row6[Imie]</div> <div class='col'> $row6[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
-                                     </a></div> ";
+                                     <div class='col'> <div class='row'> <div class='col'>$row2[idUrzadzenia]</div> <div class='col'>$row2[typUrzadzenia]</div> <div class='col'>$row2[Stan]</div> "; while($row6=$wynik1->fetch_assoc()){echo "<div class='col'>$row6[Imie]</div> <div class='col'> $row6[Nazwisko]</div> ";} echo"<div class='col'>";
+                                     if($row2['typUrzadzenia']=='PC'){
+                                      echo "<img src='devicegrafiki/PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      else if($row2['typUrzadzenia'] =='Laptop'){
+                                        echo "<img src='devicegrafiki/Laptop.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      
+                                      else if($row2['typUrzadzenia'] =='Telefon'){
+                                        echo "<img src='devicegrafiki/Telefon.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      
+                                      else if($row2['typUrzadzenia'] =='Laptop'){
+                                        echo "<img src='devicegrafiki/Laptop.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      else if($row2['typUrzadzenia'] =='Tablet'){
+                                        echo "<img src='devicegrafiki/Telefon.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      else if($row2['typUrzadzenia'] =='Peryferia'){
+                                        echo "<img src='devicegrafiki/Peryferia.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      else if($row2['typUrzadzenia'] =='Konsola'){
+                                        echo "<img src='devicegrafiki/Konsola.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                      else if($row2['typUrzadzenia'] =='Inne'){
+                                        echo "<img src='devicegrafiki/inne.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                                      }
+                                     
+                                     echo "</div></div></div></a></div> ";
 
                                  }
                              }
@@ -172,7 +199,34 @@ $poprzednia = $strona-1;
                     $wynik = $conn->query($data1);
                     echo "<div class='row border-bottom border-dark mt-3' id='devices'>
                     <a type='submit' href='deviceinfo.php?id=$row3[idUrzadzenia]'>
-                    <div class='col'> <div class='row'> <div class='col'>$row3[idUrzadzenia]</div> <div class='col'>$row3[typUrzadzenia]</div> <div class='col'>$row3[Stan]</div> "; while($row5=$wynik->fetch_assoc()){echo "<div class='col'>$row5[Imie]</div> <div class='col'> $row5[Nazwisko]</div> ";} echo"<div class='col'><img src='PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img></div></div></div>
+                    <div class='col'> <div class='row'> <div class='col'>$row3[idUrzadzenia]</div> <div class='col'>$row3[typUrzadzenia]</div> <div class='col'>$row3[Stan]</div> "; while($row5=$wynik->fetch_assoc()){echo "<div class='col'>$row5[Imie]</div> <div class='col'> $row5[Nazwisko]</div> ";} echo"<div class='col'>";
+                    if($row3['typUrzadzenia']=='PC'){
+                      echo "<img src='devicegrafiki/PC.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      else if($row3['typUrzadzenia'] =='Laptop'){
+                        echo "<img src='devicegrafiki/Laptop.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      
+                      else if($row3['typUrzadzenia'] =='Telefon'){
+                        echo "<img src='devicegrafiki/Telefon.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      
+                      else if($row3['typUrzadzenia'] =='Laptop'){
+                        echo "<img src='devicegrafiki/Laptop.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      else if($row3['typUrzadzenia'] =='Tablet'){
+                        echo "<img src='devicegrafiki/Telefon.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      else if($row3['typUrzadzenia'] =='Peryferia'){
+                        echo "<img src='devicegrafiki/Peryferia.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      else if($row3['typUrzadzenia'] =='Konsola'){
+                        echo "<img src='devicegrafiki/Konsola.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                      else if($row3['typUrzadzenia'] =='Inne'){
+                        echo "<img src='devicegrafiki/inne.png' height='40px' width='40px' alt ='Avatar' style='border-radius: 50%;' class='float-end '></img> ";
+                      }
+                    echo"</div></div></div>
                     </a></div> ";
                    }
                }

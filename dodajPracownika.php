@@ -28,6 +28,20 @@ if(!isset($_SESSION['typUzytkownika'])){
  
 }
     </Style>
+    <script>
+var sprawdz = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('PotwierdzPassword').value) {
+    document.getElementById('wiadomosc').style.color = 'green';
+    document.getElementById('wiadomosc').innerHTML = 'Hasła są identyczne';
+	document.getElementById("submit").disabled = false;
+  } else {
+    document.getElementById('wiadomosc').style.color = 'red';
+    document.getElementById('wiadomosc').innerHTML = 'Hasła nie są identyczne!';
+	document.getElementById("submit").disabled = true;
+  }
+}
+ </script>
 </head>
 <body>
 <div class="sticky-top">
@@ -71,10 +85,10 @@ if(!isset($_SESSION['typUzytkownika'])){
                 }}
             ?>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">O Nas</a>
+                <a class="nav-link text-white" href="ONas.php">O Nas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Kontakt</a>
+                <a class="nav-link text-white" href="Kontakt.php">Kontakt</a>
               </li>
                 </ul>
           </div>
@@ -114,13 +128,14 @@ if(!isset($_SESSION['typUzytkownika'])){
             <div class="mt-5">
             <form action ="dodajPracownika.inc.php"  method="post" enctype="multipart/form-data">
                 
-                <input type="Text" class="form-control" id="Imie" name="Imie" placeholder="Imie pracownika"><br>
-                <input type="Text" class="form-control" id="Nazwisko" name="Nazwisko" placeholder="Nazwisko pracownika"><br>
-                <input type="Text" class="form-control" id="Email" name="Email" placeholder="E-mail pracownika"><br>
-                <input type="number" class="form-control" id="number" name="number" placeholder="Numer telefonu pracownika"><br>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Hasło dla pracownika"><br>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Potwierdź hasło"><br>
-                <button type="submit" class="form-control" id="submit" >Zarejestruj</button>
+                <input type="Text" class="form-control" id="Imie" name="Imie" placeholder="Imie pracownika" required><br>
+                <input type="Text" class="form-control" id="Nazwisko" name="Nazwisko" placeholder="Nazwisko pracownika" required><br>
+                <input type="Text" class="form-control" id="Email" name="Email" placeholder="E-mail pracownika" required><br>
+                <input type="number" class="form-control" id="number" name="number" placeholder="Numer telefonu pracownika" required><br>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Hasło dla pracownika" onkeyup='sprawdz();' required><br>
+                <input type="password" class="form-control" id="PotwierdzPassword" name="password" placeholder="Potwierdź hasło" onkeyup='sprawdz();' required><br>
+                <span id='wiadomosc'></span>
+                <button type="submit" class="form-control" id="submit" disabled='true' >Zarejestruj</button>
             </form>
             
 

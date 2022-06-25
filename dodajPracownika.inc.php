@@ -5,7 +5,7 @@ $Imie =$_POST['Imie'];
 $Nazwisko =$_POST['Nazwisko'];
 $Email =$_POST['Email'];
 $numer =$_POST['number'];
-$haslo =md5($_POST['password']);
+$haslo =$_POST['password'];
 $typUzytkownika = "Pracownik";
 
 $polaczenie=mysqli_connect('localhost','root','','serwiskomputerowy');

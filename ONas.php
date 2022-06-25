@@ -1,12 +1,6 @@
-
 <?php
 session_start();
-if(!isset($_SESSION['typUzytkownika'])){
-  header("Location:login.php");
-}
-elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
-  header("Location:devices.php");
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,16 +8,23 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <Style>
+    
+    
+   <Style>
         body {
-  background-color: ;
-}
-.kolor{
+ 
+}.kolor{
   background-color: rgb(3,3,64);
 }
 .kolory{
   background-color:rgb(3,3,64);
  
+}
+.moje{
+	background-color:rgb(3,3,64); 
+	min-height:100px;
+	border-radius: 15px;
+	-moz-border-radius: 15px
 }
     </Style>
 </head>
@@ -42,15 +43,13 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
               if($_SESSION['typUzytkownika'] != "Uzytkownik"){
               echo "<li class='nav-item'>
               <a class='nav-link active text-white' aria-current='page' href='devices.php'>Urządzenia</a>
-            </li>";
+            </li>
+            <li class='nav-item'>
+                <a class='nav-link active text-white' href='MojeUrzadzenia.php'>Moje naprawy</a>
+              </li>";
               }}
               ?>
-                
               
-              
-              <li class="nav-item">
-                <a class="nav-link active text-white" href="MojeUrzadzenia.php">Moje naprawy</a>
-              </li>
               <?php
               if(isset($_SESSION['typUzytkownika'] )) {
               if($_SESSION['typUzytkownika'] != "Uzytkownik"){
@@ -104,59 +103,19 @@ elseif($_SESSION['typUzytkownika']=='Uzytkownik'){
             ?>
         </div>
       </nav>
-    </div>
-    <div>
-        <?php
-         $urzadzenie=$_GET['id'];
-            $conn = @new mysqli('localhost','root', '','serwiskomputerowy');
-            if($conn->connect_error !=0){
-                echo "Wystąpił błąd połączenia";
-               }
-               else{
-                $data = "SELECT * FROM urzadzenie where idUrzadzenia='$urzadzenie'";
-                $result = $conn->query($data);
-                if($result!=null){
-                    while($row = $result->fetch_assoc()){
-
-               
-        echo"<div style='height:50px;'></div>
-    <div class='container-fluid' >
-      <div class='mx-auto' style='width: 800px;'>
-            <div class='mt-5'>
-            <form action='EdytujDane.inc.php' method='post'>
-            <div class='row'>
-             <div class='col'>
-                <input type='Text' class='form-control' id='NumerTelefonuWlasciciela' name='NumerTelefonuWlasciciela' value='$row[numerTelefonuWlasciciela]' placeholder='Numer Telefonu Właściciela' required>
-                <input type='E-mail' class='form-control' id='AdresEmail' name='AdresEmail' value='$row[adresEmailWlasiciela]' placeholder='Adres E-mail Właściciela' required>
-                <input type='Text' class='form-control' id='ImieWlasciciela' name='ImieWlasciciela' value='$row[imieWlasciciela]' placeholder='Imię Właściciela' required>
-                <input type='Text' class='form-control' id='NazwiskoWlasciciela' name='NazwiskoWlasciciela' value='$row[nazwiskoWlasciciela]' placeholder='Nazwisko Właściciela' required>
-              </div>
-                <div class='col mt-3'>
-                <select class='form-select' id='TypUrzadzenia' name='TypUrzadzenia'  aria-label='Typ urządzenia'>
-                  <option selected>$row[typUrzadzenia]</option>
-                  <option value='Telefon'>Telefon</option>
-                  <option value='Tablet'>Tablet</option>
-                  <option value='PC'>PC</option>
-                  <option value='Laptop'>Laptop</option>
-                  <option value='Peryferia'>Peryferia</option>
-                  <option value='Konsola'>Konsola</option>
-                  <option value='Inne'>Inne</option>
-                </select>
-                <input type='Text' class='form-control' id='MarkaUrzadzenia' name='MarkaUrzadzenia' value='$row[markaUrzadzenia]' placeholder='Marka Urządzenia' required>
-                <input type='Text' class='form-control' id='ModelUrzadzenia' name='ModelUrzadzenia' value='$row[modelUrzadzenia]' placeholder='Model urządzenia' required>
-                <input width='10px' type='text' name='iduz' class='visually-hidden' value='$urzadzenie'>
-                </div>
-                
-                <div class='mt-2'>
-                <button class=' border border-2 form-control' style='height:40px;' type='submit' id='Submit' name='Submit' >Wyślij</button>
-                </div>  
-              </div>  
-            </form>
+        </div>
+        <div class='d-flex container justify-content-center' style='padding-top:100px'>
+        <div class='justify-content-center' style='width:50%' >
+        <div class='container'>
+        
+        <div class="mx-auto moje text-white ">
+            <div class="mt-5">
+                <p>Wykonał: Bartłomiej Kieroński<br>
+                W62951<br>
+                w62951@wsiz.edu.rzeszow.pl</p>
         </div>
         </div>
-        ";
-                    }}}?>
-       
         </div>
-  </body>
+        </div>
+        </div>
 </html>
